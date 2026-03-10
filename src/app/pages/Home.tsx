@@ -4,7 +4,7 @@ import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 const heroImg = new URL("../../assets/images/americanbrittany.jpg", import.meta.url).href;
 const dogShowImg = new URL("../../assets/images/dog1.jpg", import.meta.url).href;
 const outdoorDog = new URL("../../assets/images/playing.jpg", import.meta.url).href;
-const spanielRunImg = new URL("../../assets/images/dog3.jpg", import.meta.url).href;
+const spanielRunImg = new URL("../../assets/images/dog3.jpeg", import.meta.url).href;
 const membershipImg = new URL("../../assets/images/dog4.jpg", import.meta.url).href;
 const awardImg = new URL("../../assets/images/dog5.jpg", import.meta.url).href;
 const luxuryDogImg = new URL("../../assets/images/outdoorDog.jpg", import.meta.url).href;
