@@ -1,10 +1,24 @@
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Award, Star, Trophy, Medal } from "lucide-react";
 
-const awardImg = "https://images.unsplash.com/photo-1597509560792-796c8682d017?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkb2clMjBjbHViJTIwYXdhcmQlMjB0cm9waHklMjBjZXJlbW9ueXxlbnwxfHx8fDE3NzMwNjgxNzF8MA&ixlib=rb-4.1.0&q=80&w=1080";
-const ribbonImg = "https://images.unsplash.com/photo-1557674535-46bcc4ef6c1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcmVtaXVtJTIwZG9nJTIwc2hvdyUyMHdpbm5lciUyMHJpYmJvbnxlbnwxfHx8fDE3NzMwNjgxNzd8MA&ixlib=rb-4.1.0&q=80&w=1080";
-const showImg = "https://images.unsplash.com/photo-1646124827940-275c917c7e29?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkb2clMjBzaG93JTIwY29tcGV0aXRpb24lMjBjaGFtcGlvbnNoaXB8ZW58MXx8fHwxNzczMDY4MTcwfDA&ixlib=rb-4.1.0&q=80&w=1080";
+/* ─── Assets ─────────────────────────────────────────────────────── */
+const awardImg = "https://images.unsplash.com/photo-1597509560792-796c8682d017?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkb2clMjBjbHViJTIwYXdhcmQlMjB0cm9waHklMjBjZXJlbW9ueXxlbnwxfHx8fDE3NzMwNjgxNzl8MA&ixlib=rb-4.1.0&q=80&w=1080";
+import awards from "../../assets/images/annual-awards/awards.jpg";
 
+/* ─── Design Tokens (Synced with Events Page) ────────────────────── */
+const C = {
+  white: "#ffffff",
+  offwhite: "#FAF7F0",
+  navy: "#080c18",
+  charcoal: "#111111",
+  textBody: "#666666",
+  gold: "#C9A84C",
+  goldLight: "#E8C97E",
+  border: "rgba(0,0,0,0.08)",
+  accentBlue: "#2563eb",
+};
+
+/* ─── Data ───────────────────────────────────────────────────────── */
 const awardsData = [
   {
     category: "Best of Breed",
@@ -14,6 +28,7 @@ const awardsData = [
     handler: "Thomas R. Ashford",
     show: "NVBC Annual Specialty Show",
     icon: Trophy,
+    color: "#C9A84C",
   },
   {
     category: "Best of Opposite Sex",
@@ -23,6 +38,7 @@ const awardsData = [
     handler: "Diana Chen",
     show: "NVBC Annual Specialty Show",
     icon: Star,
+    color: "#2563EB",
   },
   {
     category: "Best in Field",
@@ -32,6 +48,7 @@ const awardsData = [
     handler: "James Whitfield",
     show: "NVBC Fall Field Trial Championship",
     icon: Award,
+    color: "#16A34A",
   },
   {
     category: "Dual Champion",
@@ -41,6 +58,7 @@ const awardsData = [
     handler: "Self-handled",
     show: "Multiple Events",
     icon: Medal,
+    color: "#DC2626",
   },
   {
     category: "Best of Winners",
@@ -50,6 +68,7 @@ const awardsData = [
     handler: "Emily Davis",
     show: "NVBC Spring Specialty",
     icon: Trophy,
+    color: "#7C3AED",
   },
   {
     category: "AKC Hunt Test Master Hunter",
@@ -59,9 +78,9 @@ const awardsData = [
     handler: "David Porter",
     show: "NVBC Hunt Test Weekend",
     icon: Award,
+    color: "#F59E0B",
   },
 ];
-
 const hallOfFame = [
   { dog: "DC Tri-Color Mountain King", year: "2018", titles: "DC, AFC, BROM", desc: "First dual champion produced by NVBC to win National Field Champion." },
   { dog: "GCH Tidewater's Royal Amber", year: "2019", titles: "GCH, BROM", desc: "Won Best of Breed at the National Specialty Show. Dam of 12 champions." },
@@ -71,123 +90,162 @@ const hallOfFame = [
 
 export default function Awards() {
   return (
-    <div style={{ background: "#080c18", paddingTop: "100px" }}>
-      {/* Page Header */}
+    <div style={{ background: C.white, minHeight: "100vh" }}>
+      {/* --- FULL PAGE HERO SECTION --- */}
       <section
-        className="relative overflow-hidden"
-        style={{ minHeight: "50vh", display: "flex", alignItems: "center" }}
+        className="relative flex items-center justify-center overflow-hidden"
+        style={{ height: "100vh", width: "100%", background: C.navy }}
       >
-        <div className="absolute inset-0">
-          <ImageWithFallback src={ribbonImg} alt="Awards" className="w-full h-full object-cover" style={{ objectPosition: "center" }} />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(8,12,24,0.93) 0%, rgba(8,12,24,0.7) 100%)" }} />
-        </div>
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-          <div style={{ fontFamily: "'Cinzel', serif", color: "#C9A84C", fontSize: "11px", letterSpacing: "0.3em", marginBottom: "16px" }}>
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${awards})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: 0.5,
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(to bottom, rgba(8,12,24,0.6) 0%, transparent 50%, rgba(8,12,24,0.8) 100%)",
+          }}
+        />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+          <div
+            style={{
+              fontFamily: "'Cinzel', serif",
+              color: C.gold,
+              fontSize: "14px",
+              letterSpacing: "0.5em",
+              marginBottom: "24px",
+              fontWeight: 100,
+            }}
+
+          >
+            <div
+              style={{
+                margin: "0 auto 20px auto",
+                width: "80px",
+                height: "4px",
+                background: C.gold
+              }}
+            />
             RECOGNITION
           </div>
           <h1
             style={{
-              fontFamily: "'Cinzel', serif",
-              color: "#ffffff",
-              fontSize: "clamp(36px, 5vw, 64px)",
+              fontFamily: "'Playfair Display', serif",
+              color: C.white,
+              fontSize: "clamp(45px, 9vw, 95px)",
               fontWeight: 700,
-              lineHeight: "1.15",
-              marginBottom: "20px",
+              lineHeight: "1.1",
+              marginBottom: "32px",
+              fontStyle: "italic" // ITALICIZED PER REQUEST
             }}
           >
-            Awards & Champions
+            Awards &<br />Champions
           </h1>
-          <p style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Playfair Display', serif", fontSize: "18px", maxWidth: "550px", lineHeight: "1.7" }}>
-            Celebrating the extraordinary dogs and dedicated owners who represent the very best of the Brittany breed.
-          </p>
+          <div className="flex justify-center">
+          </div>
         </div>
       </section>
 
-      {/* 2025 Award Winners */}
+      {/* --- 2025 AWARD WINNERS --- */}
+
       <section className="py-24 px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <div style={{ fontFamily: "'Cinzel', serif", color: "#C9A84C", fontSize: "11px", letterSpacing: "0.25em", marginBottom: "12px" }}>
+          <div className="text-center mb-16">
+          </div>
+          <div
+
+          >
+            <div
+              style={{
+                margin: "0 auto 20px auto",
+                width: "80px",
+                height: "4px",
+                background: C.gold
+              }} />
             2025 SEASON
           </div>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", color: "#ffffff", fontSize: "clamp(28px, 4vw, 46px)", lineHeight: "1.2" }}>
+
+          <h2
+            style={{
+              fontFamily: "'Playfair Display', serif",
+              color: C.charcoal,
+              fontSize: "clamp(32px, 4vw, 48px)",
+              fontWeight: 700
+            }}
+          >
             Annual Award Winners
           </h2>
+
+
+
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {awardsData.map(({ category, year, dog, owner, handler, show, icon: Icon }, i) => (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {awardsData.map(({ category, year, dog, owner, handler, show, icon: Icon, color }, i) => (
             <div
               key={i}
               style={{
-                background: "linear-gradient(135deg, rgba(15,22,45,0.8), rgba(10,14,26,0.8))",
-                border: "1px solid rgba(201,168,76,0.15)",
-                borderRadius: "12px",
-                padding: "32px 28px",
+                background: C.white,
+                border: `1px solid ${C.border}`,
+                padding: "40px 32px",
                 position: "relative",
-                overflow: "hidden",
-                transition: "all 0.3s ease",
+                transition: "all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1)",
+                boxShadow: "0 4px 20px rgba(0,0,0,0.03)",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(201,168,76,0.4)";
-                (e.currentTarget as HTMLDivElement).style.transform = "translateY(-6px)";
-                (e.currentTarget as HTMLDivElement).style.boxShadow = "0 24px 60px rgba(0,0,0,0.5)";
+                (e.currentTarget as HTMLDivElement).style.transform = "translateY(-8px)";
+                (e.currentTarget as HTMLDivElement).style.boxShadow = "0 30px 60px rgba(0,0,0,0.08)";
+                (e.currentTarget as HTMLDivElement).style.borderColor = C.gold;
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(201,168,76,0.15)";
                 (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
-                (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+                (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 20px rgba(0,0,0,0.03)";
+                (e.currentTarget as HTMLDivElement).style.borderColor = C.border;
               }}
             >
-              {/* BG decoration */}
               <div
                 style={{
-                  position: "absolute",
-                  top: "-20px",
-                  right: "-20px",
-                  width: "100px",
-                  height: "100px",
-                  borderRadius: "50%",
-                  background: "radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%)",
-                }}
-              />
-
-              <div
-                style={{
-                  width: "52px",
-                  height: "52px",
-                  borderRadius: "8px",
-                  background: "linear-gradient(135deg, rgba(201,168,76,0.2), rgba(201,168,76,0.05))",
-                  border: "1px solid rgba(201,168,76,0.3)",
+                  width: "48px",
+                  height: "48px",
+                  background: `${color}15`,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: "#C9A84C",
-                  marginBottom: "20px",
+                  color: color,
+                  marginBottom: "24px",
+                  borderRadius: "4px",
                 }}
               >
-                <Icon size={22} />
+                <Icon size={24} />
               </div>
 
-              <div style={{ fontFamily: "'Cinzel', serif", color: "#C9A84C", fontSize: "10px", letterSpacing: "0.2em", marginBottom: "8px" }}>
+              <div style={{ fontFamily: "'Cinzel', serif", color: C.gold, fontSize: "10px", letterSpacing: "0.2em", marginBottom: "8px", fontWeight: 800 }}>
                 {category}
               </div>
-              <h3 style={{ fontFamily: "'Playfair Display', serif", color: "#ffffff", fontSize: "18px", lineHeight: "1.3", marginBottom: "16px" }}>
+
+              <h3 style={{ fontFamily: "'Playfair Display', serif", color: C.charcoal, fontSize: "22px", lineHeight: "1.3", marginBottom: "20px", fontWeight: 700 }}>
                 {dog}
               </h3>
 
-              <div style={{ height: "1px", background: "rgba(201,168,76,0.12)", marginBottom: "16px" }} />
+              <div style={{ height: "1px", background: C.border, marginBottom: "20px" }} />
 
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-3">
                 {[
                   { label: "Owner", val: owner },
                   { label: "Handler", val: handler },
                   { label: "Show", val: show },
                 ].map(({ label, val }) => (
-                  <div key={label} className="flex gap-2">
-                    <span style={{ fontFamily: "'Cinzel', serif", color: "rgba(201,168,76,0.6)", fontSize: "9px", letterSpacing: "0.1em", minWidth: "55px", paddingTop: "1px" }}>
+                  <div key={label} className="flex flex-col">
+                    <span style={{ fontFamily: "'Cinzel', serif", color: C.gold, fontSize: "9px", letterSpacing: "0.1em", fontWeight: 700, marginBottom: "2px" }}>
                       {label}
                     </span>
-                    <span style={{ fontFamily: "'Inter', sans-serif", color: "rgba(255,255,255,0.55)", fontSize: "12px" }}>{val}</span>
+                    <span style={{ fontFamily: "'Inter', sans-serif", color: C.textBody, fontSize: "14px" }}>{val}</span>
                   </div>
                 ))}
               </div>
@@ -195,15 +253,12 @@ export default function Awards() {
               <div
                 style={{
                   position: "absolute",
-                  top: "20px",
-                  right: "20px",
-                  background: "linear-gradient(135deg, #C9A84C, #E8C97E)",
-                  color: "#080c18",
-                  padding: "3px 10px",
-                  borderRadius: "2px",
-                  fontFamily: "'Cinzel', serif",
-                  fontSize: "9px",
-                  letterSpacing: "0.1em",
+                  top: "32px",
+                  right: "32px",
+                  fontFamily: "'Playfair Display', serif",
+                  fontSize: "18px",
+                  fontStyle: "italic",
+                  color: C.border,
                   fontWeight: 700,
                 }}
               >
@@ -214,69 +269,61 @@ export default function Awards() {
         </div>
       </section>
 
-      {/* Hall of Fame */}
+      {/* --- HALL OF FAME --- */}
       <section
         style={{
-          background: "linear-gradient(135deg, #0a0e1a, #0d1424)",
-          padding: "80px 0",
-          borderTop: "1px solid rgba(201,168,76,0.1)",
-          borderBottom: "1px solid rgba(201,168,76,0.1)",
+          background: C.goldLight,
+          padding: "100px 0",
+          borderTop: `1px solid ${C.border}`,
+          borderBottom: `1px solid ${C.border}`,
         }}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div style={{ fontFamily: "'Cinzel', serif", color: "#C9A84C", fontSize: "11px", letterSpacing: "0.25em", marginBottom: "12px" }}>
+            <div style={{ fontFamily: "'Cinzel', serif", color: C.charcoal, fontSize: "20px", letterSpacing: "0.1em", marginBottom: "12px", fontWeight: 800 }}>
               LEGACY
             </div>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", color: "#ffffff", fontSize: "clamp(28px, 4vw, 46px)", lineHeight: "1.2" }}>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", color: C.charcoal, fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 700 }}>
               NVBC Hall of Fame
             </h2>
-            <p style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'Inter', sans-serif", fontSize: "15px", maxWidth: "550px", margin: "16px auto 0", lineHeight: "1.7" }}>
-              These extraordinary dogs have left an indelible mark on the Brittany breed and the NVBC legacy.
-            </p>
+            <div className="mt-6 flex justify-center">
+              <div style={{ width: "100px", height: "7px", background: C.gold }} />
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-8">
             {hallOfFame.map(({ dog, year, titles, desc }, i) => (
               <div
                 key={i}
                 style={{
-                  background: "linear-gradient(135deg, rgba(201,168,76,0.06), rgba(201,168,76,0.02))",
-                  border: "1px solid rgba(201,168,76,0.2)",
-                  borderRadius: "10px",
-                  padding: "32px",
+                  background: C.white,
+                  border: `1px solid ${C.border}`,
+                  padding: "40px",
                   display: "flex",
-                  gap: "20px",
-                  transition: "all 0.3s ease",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(201,168,76,0.45)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(201,168,76,0.2)";
+                  gap: "24px",
                 }}
               >
                 <div
                   style={{
-                    width: "56px",
-                    height: "56px",
+                    width: "64px",
+                    height: "64px",
                     borderRadius: "50%",
-                    background: "linear-gradient(135deg, #C9A84C, #E8C97E)",
+                    background: C.gold,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     flexShrink: 0,
-                    boxShadow: "0 6px 20px rgba(201,168,76,0.4)",
+                    boxShadow: "0 10px 20px rgba(201,168,76,0.2)",
                   }}
                 >
-                  <Trophy size={22} style={{ color: "#080c18" }} />
+                  <Trophy size={24} color={C.white} />
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'Cinzel', serif", color: "#C9A84C", fontSize: "9px", letterSpacing: "0.15em", marginBottom: "6px" }}>
-                    INDUCTED {year} · {titles}
+                  <div style={{ fontFamily: "'Cinzel', serif", color: C.gold, fontSize: "10px", letterSpacing: "0.15em", marginBottom: "8px", fontWeight: 800 }}>
+                    INDUCTED {year} • {titles}
                   </div>
-                  <h3 style={{ fontFamily: "'Playfair Display', serif", color: "#ffffff", fontSize: "19px", marginBottom: "10px" }}>{dog}</h3>
-                  <p style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'Inter', sans-serif", fontSize: "13px", lineHeight: "1.7" }}>{desc}</p>
+                  <h3 style={{ fontFamily: "'Playfair Display', serif", color: C.charcoal, fontSize: "24px", marginBottom: "12px", fontWeight: 700 }}>{dog}</h3>
+                  <p style={{ color: C.textBody, fontFamily: "'Inter', sans-serif", fontSize: "15px", lineHeight: "1.7" }}>{desc}</p>
                 </div>
               </div>
             ))}
@@ -284,34 +331,58 @@ export default function Awards() {
         </div>
       </section>
 
-      {/* Award Process */}
-      <section className="py-24 px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div style={{ borderRadius: "12px", overflow: "hidden", boxShadow: "0 30px 70px rgba(0,0,0,0.6), 0 0 0 1px rgba(201,168,76,0.15)" }}>
-            <ImageWithFallback src={awardImg} alt="Award Ceremony" className="w-full object-cover" style={{ height: "460px" }} />
+      {/* --- AWARD PROCESS --- */}
+      <section className="py-32 px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
+          <div style={{ position: 'relative' }}>
+            <div style={{
+              position: 'absolute',
+              top: '-20px',
+              left: '-20px',
+              right: '20px',
+              bottom: '20px',
+              border: `1px solid ${C.gold}`,
+              zIndex: 0
+            }} />
+            <div style={{ position: 'relative', zIndex: 1, boxShadow: "0 40px 80px rgba(0,0,0,0.1)" }}>
+              <ImageWithFallback src={awardImg} alt="Award Ceremony" className="w-full object-cover" style={{ height: "550px" }} />
+            </div>
           </div>
+
           <div>
-            <div style={{ fontFamily: "'Cinzel', serif", color: "#C9A84C", fontSize: "11px", letterSpacing: "0.25em", marginBottom: "16px" }}>
+            <div style={{ fontFamily: "'Cinzel', serif", color: C.gold, fontSize: "12px", letterSpacing: "0.25em", marginBottom: "16px", fontWeight: 800 }}>
               NOMINATIONS
             </div>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", color: "#ffffff", fontSize: "clamp(26px, 3vw, 42px)", lineHeight: "1.3", marginBottom: "24px" }}>
-              How Our Awards Work
+            <h2 style={{ fontFamily: "'Playfair Display', serif", color: C.charcoal, fontSize: "clamp(32px, 3.5vw, 44px)", lineHeight: "1.2", marginBottom: "28px", fontWeight: 700 }}>
+              The Selection<br />Process
             </h2>
-            <p style={{ color: "rgba(255,255,255,0.6)", lineHeight: "1.9", marginBottom: "20px", fontFamily: "'Inter', sans-serif", fontSize: "15px" }}>
-              NVBC awards are presented at our Annual Awards Banquet each January. Nominations are accepted from all active club members throughout the year.
+            <p style={{ color: C.textBody, lineHeight: "1.8", marginBottom: "40px", fontFamily: "'Inter', sans-serif", fontSize: "16px" }}>
+              Our awards recognize excellence across conformation, field performance, and club service. We follow a rigorous evaluation process to ensure every recipient reflects the highest standards of the NVBC.
             </p>
-            <div className="flex flex-col gap-4">
+
+            <div className="flex flex-col gap-8">
               {[
                 { step: "01", title: "Submit Nomination", desc: "Any NVBC member may nominate a dog or member for recognition by the December 1 deadline." },
                 { step: "02", title: "Committee Review", desc: "Our Awards Committee evaluates all nominations based on accomplishments, sportsmanship, and breed contributions." },
                 { step: "03", title: "Member Vote", desc: "Select awards are voted on by the general membership for transparency and community engagement." },
                 { step: "04", title: "Annual Banquet", desc: "Winners are announced and honored at our prestigious Annual Awards Banquet in January." },
               ].map(({ step, title, desc }) => (
-                <div key={step} className="flex gap-4">
-                  <div style={{ fontFamily: "'Cinzel', serif", color: "#C9A84C", fontSize: "22px", fontWeight: 700, minWidth: "36px" }}>{step}</div>
+                <div key={step} className="flex gap-6">
+                  <div style={{
+                    fontFamily: "'Playfair Display', serif",
+                    color: C.gold,
+                    fontSize: "28px",
+                    fontWeight: 700,
+                    minWidth: "40px",
+                    lineHeight: 1
+                  }}>
+                    {step}
+                  </div>
                   <div>
-                    <div style={{ fontFamily: "'Cinzel', serif", color: "#ffffff", fontSize: "13px", letterSpacing: "0.05em", marginBottom: "4px" }}>{title}</div>
-                    <p style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'Inter', sans-serif", fontSize: "13px", lineHeight: "1.6" }}>{desc}</p>
+                    <div style={{ fontFamily: "'Cinzel', serif", color: C.charcoal, fontSize: "14px", letterSpacing: "0.05em", marginBottom: "6px", fontWeight: 800 }}>
+                      {title}
+                    </div>
+                    <p style={{ color: C.textBody, fontFamily: "'Inter', sans-serif", fontSize: "14px", lineHeight: "1.6" }}>{desc}</p>
                   </div>
                 </div>
               ))}

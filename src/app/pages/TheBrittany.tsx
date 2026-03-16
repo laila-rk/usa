@@ -1,13 +1,14 @@
+import React from "react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle } from "lucide-react";
 
-const brittanyPortrait = "https://images.unsplash.com/photo-1765817345131-fc0c44f1b89b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxCcml0dGFueSUyMHNwYW5pZWwlMjBkb2clMjBwb3J0cmFpdCUyMGVsZWdhbnR8ZW58MXx8fHwxNzczMDY4MTY5fDA&ixlib=rb-4.1.0&q=80&w=1080";
-const huntingImg = "https://images.unsplash.com/photo-1772814356222-a81ede5102b9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvcmFuZ2UlMjB3aGl0ZSUyMGh1bnRpbmclMjBkb2clMjBiaXJkJTIwZmllbGR8ZW58MXx8fHwxNzczMDY4MTgwfDA&ixlib=rb-4.1.0&q=80&w=1080";
-const runningImg = "https://images.unsplash.com/photo-1595130066344-fc1d365ab904?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzcGFuaWVsJTIwZG9nJTIwcnVubmluZyUyMGZpZWxkJTIwZ29sZGVuJTIwaG91cnxlbnwxfHx8fDE3NzMwNjgxNzR8MA&ixlib=rb-4.1.0&q=80&w=1080";
-const puppyImg = "https://images.unsplash.com/photo-1767457107942-4a7c5dd99cf8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnb2xkZW4lMjByZXRyaWV2ZXIlMjBwdXBweSUyMGN1dGUlMjBmYW1pbHl8ZW58MXx8fHwxNzczMDY4MTgxfDA&ixlib=rb-4.1.0&q=80&w=1080";
-const outdoorImg = "https://images.unsplash.com/photo-1762445332687-59c092b43d4f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkb2clMjBvdXRkb29yJTIwbmF0dXJlJTIwdHJhaWwlMjBhdXR1bW58ZW58MXx8fHwxNzczMDY4MTcyfDA&ixlib=rb-4.1.0&q=80&w=1080";
-
+// LOCAL ASSET IMPORTS (Based on your folder structure)
+const brittanyPortrait = "/src/assets/images/why a brittany/brittanyPortrait.jpg";
+const huntingImg = "/src/assets/images/why a brittany/huntingImg.jpg";
+const outdoorImg = "/src/assets/images/why a brittany/outdoorImg.jpg";
+const puppyImg = "/src/assets/images/why a brittany/puppyImg.jpg";
+const runningImg = "/src/assets/images/why a brittany/runningImg.jpg";
 const characteristics = [
   { label: "Height", value: "17.5 – 20.5 inches" },
   { label: "Weight", value: "30 – 40 pounds" },
@@ -51,71 +52,94 @@ const breedHistory = [
 
 export default function WhyBrittany() {
   return (
-    <div style={{ background: "#080c18", paddingTop: "100px" }}>
-      {/* Page Header */}
+    <div style={{ background: "#ffffff" }}>
+      
+      {/* SECTION 1: HERO HEADER (Centered) */}
       <section
         className="relative overflow-hidden"
-        style={{ minHeight: "60vh", display: "flex", alignItems: "center" }}
+        style={{ 
+          height: "100vh", 
+          display: "flex", 
+          alignItems: "center", 
+          justifyContent: "center", 
+          background: "#06080B" 
+        }}
       >
         <div className="absolute inset-0">
-          <ImageWithFallback src={brittanyPortrait} alt="Brittany Spaniel" className="w-full h-full object-cover" style={{ objectPosition: "center 25%" }} />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(8,12,24,0.92) 0%, rgba(8,12,24,0.65) 100%)" }} />
+          <ImageWithFallback 
+            src={brittanyPortrait} 
+            alt="Brittany Spaniel" 
+            className="w-full h-full object-cover" 
+            style={{ objectPosition: "center 25%", opacity: 0.55 }} 
+          />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(6,8,11,0.95) 0%, rgba(6,8,11,0.4) 50%, rgba(6,8,11,0.95) 100%)" }} />
         </div>
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 w-full">
-          <div style={{ fontFamily: "'Cinzel', serif", color: "#C9A84C", fontSize: "11px", letterSpacing: "0.3em", marginBottom: "16px" }}>
+        
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 w-full z-10 flex flex-col items-center text-center">
+          {/* Gold Liner */}
+          <div style={{ width: "60px", height: "1px", background: "#C9A84C", marginBottom: "32px" }} />
+          
+          <div style={{ fontFamily: "'Cinzel', serif", color: "#C9A84C", fontSize: "12px", letterSpacing: "0.4em", marginBottom: "16px", fontWeight: 800 }}>
             BREED INFORMATION
           </div>
+          
           <h1
             style={{
-              fontFamily: "'Cinzel', serif",
+              fontFamily: "'Playfair Display', serif",
               color: "#ffffff",
-              fontSize: "clamp(40px, 6vw, 80px)",
-              fontWeight: 700,
+              fontSize: "clamp(48px, 8vw, 90px)",
+              fontWeight: 400,
+              fontStyle: "italic",
               lineHeight: "1.1",
-              marginBottom: "20px",
+              marginBottom: "30px",
             }}
           >
-            The Brittany
+            Why a Brittany
           </h1>
-          <p style={{ color: "rgba(255,255,255,0.65)", fontFamily: "'Playfair Display', serif", fontSize: "20px", maxWidth: "600px", lineHeight: "1.7" }}>
+          
+          <p style={{ color: "rgba(255,255,255,0.7)", fontFamily: "'Inter', sans-serif", fontSize: "20px", maxWidth: "650px", lineHeight: "1.7", fontWeight: 300 }}>
             Versatile. Spirited. Devoted. The perfect partnership between field champion and beloved companion.
           </p>
         </div>
       </section>
 
-      {/* Breed Standard Summary */}
-      <section className="py-24 px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+      {/* SECTION 2: BREED PROFILE (Left Aligned Content) */}
+      <section className="py-32 px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-20 items-start">
           <div>
-            <div style={{ fontFamily: "'Cinzel', serif", color: "#C9A84C", fontSize: "11px", letterSpacing: "0.25em", marginBottom: "16px" }}>
+            {/* Gold Liner */}
+            <div style={{ width: "40px", height: "1px", background: "#8B6914", marginBottom: "24px" }} />
+            
+            <div style={{ fontFamily: "'Cinzel', serif", color: "#8B6914", fontSize: "18px", letterSpacing: "0.2em", marginBottom: "16px", fontWeight: 800 }}>
               BREED PROFILE
             </div>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", color: "#ffffff", fontSize: "clamp(26px, 3vw, 42px)", lineHeight: "1.3", marginBottom: "24px" }}>
+            
+            <h2 style={{ fontFamily: "'Playfair Display', serif", color: "#111111", fontSize: "clamp(32px, 4vw, 48px)", lineHeight: "1.2", marginBottom: "28px", fontWeight: 700 }}>
               AKC Breed Standard Overview
             </h2>
-            <p style={{ color: "rgba(255,255,255,0.6)", lineHeight: "1.9", marginBottom: "20px", fontFamily: "'Inter', sans-serif" }}>
-              The Brittany is a compact, closely-knit dog of medium size, a leggy dog having the appearance and qualifications of a capable bird dog with a keen, intelligent expression. Energetic, quick of movement but not without style, and having the vigor of the hunting dog.
-            </p>
-            <p style={{ color: "rgba(255,255,255,0.6)", lineHeight: "1.9", marginBottom: "36px", fontFamily: "'Inter', sans-serif" }}>
-              The coat should be dense, flat, or wavy (never curly) and should not be so fine as to require excessive grooming. The Brittany should never appear heavy, fat, or clumsy.
+            
+            <p style={{ color: "rgba(0,0,0,0.65)", lineHeight: "1.9", marginBottom: "40px", fontFamily: "'Inter', sans-serif", fontSize: "16px" }}>
+              The Brittany is a compact, closely-knit dog of medium size, a leggy dog having the appearance and qualifications of a capable bird dog with a keen, intelligent expression.
             </p>
 
-            {/* Characteristics Grid */}
-            <div className="grid grid-cols-2 gap-3">
+            {/* Characteristics Grid with Gold Top Border */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {characteristics.map(({ label, value }, i) => (
                 <div
                   key={i}
                   style={{
-                    background: "rgba(201,168,76,0.05)",
-                    border: "1px solid rgba(201,168,76,0.15)",
-                    borderRadius: "6px",
-                    padding: "14px 16px",
+                    background: "#ffffff",
+                    border: "1px solid rgba(0,0,0,0.06)",
+                    borderTop: "3px solid #C9A84C", // Gold Top Border
+                    borderRadius: "2px",
+                    padding: "24px",
+                    boxShadow: "0 4px 15px rgba(0,0,0,0.02)"
                   }}
                 >
-                  <div style={{ fontFamily: "'Cinzel', serif", color: "#C9A84C", fontSize: "9px", letterSpacing: "0.15em", marginBottom: "4px" }}>
+                  <div style={{ fontFamily: "'Cinzel', serif", color: "#8B6914", fontSize: "10px", fontWeight: 800, letterSpacing: "0.1em", marginBottom: "6px" }}>
                     {label}
                   </div>
-                  <div style={{ fontFamily: "'Inter', sans-serif", color: "#ffffff", fontSize: "13px" }}>
+                  <div style={{ fontFamily: "'Inter', sans-serif", color: "#111111", fontSize: "15px", fontWeight: 500 }}>
                     {value}
                   </div>
                 </div>
@@ -123,148 +147,130 @@ export default function WhyBrittany() {
             </div>
           </div>
 
-          {/* 3D Stack of images */}
-          <div className="relative" style={{ height: "550px", perspective: "1000px" }}>
-            <div
-              style={{
-                position: "absolute",
-                top: 0,
-                left: "40px",
-                right: 0,
-                height: "400px",
-                transform: "rotateY(-8deg) rotateX(4deg)",
-                borderRadius: "12px",
-                overflow: "hidden",
-                boxShadow: "0 40px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(201,168,76,0.2)",
-              }}
-            >
+          <div className="relative h-[600px] hidden lg:block" style={{ perspective: "1500px" }}>
+            <div style={{ position: "absolute", inset: 0, transform: "rotateY(-5deg)", borderRadius: "4px", overflow: "hidden", boxShadow: "0 40px 100px rgba(0,0,0,0.12)" }}>
               <ImageWithFallback src={huntingImg} alt="Brittany Hunting" className="w-full h-full object-cover" />
-            </div>
-            <div
-              style={{
-                position: "absolute",
-                bottom: "0px",
-                left: "0",
-                width: "220px",
-                transform: "rotateY(6deg) rotateX(-3deg)",
-                borderRadius: "10px",
-                overflow: "hidden",
-                boxShadow: "0 20px 50px rgba(0,0,0,0.8), 0 0 0 1px rgba(201,168,76,0.25)",
-                border: "2px solid rgba(201,168,76,0.3)",
-              }}
-            >
-              <ImageWithFallback src={runningImg} alt="Brittany Running" className="w-full object-cover" style={{ height: "200px" }} />
-              <div style={{ background: "linear-gradient(135deg, #0a0e1a, #111828)", padding: "12px 16px", borderTop: "1px solid rgba(201,168,76,0.2)" }}>
-                <div style={{ fontFamily: "'Cinzel', serif", color: "#C9A84C", fontSize: "9px", letterSpacing: "0.15em" }}>FIELD EXCELLENCE</div>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Breed Traits */}
-      <section style={{ background: "linear-gradient(135deg, #0a0e1a, #0d1424)", padding: "80px 0", borderTop: "1px solid rgba(201,168,76,0.1)" }}>
+      {/* SECTION 3: TRAITS (Gold Background) */}
+      <section style={{ background: "#f8de91", padding: "120px 0" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <div style={{ fontFamily: "'Cinzel', serif", color: "#C9A84C", fontSize: "11px", letterSpacing: "0.25em", marginBottom: "16px" }}>
+              {/* Gold Liner */}
+              <div style={{ width: "40px", height: "1px", background: "#644c10", marginBottom: "24px" }} />
+              
+              <div style={{ fontFamily: "'Cinzel', serif", color: "#644c10", fontSize: "18px", letterSpacing: "0.25em", marginBottom: "16px", fontWeight: 800 }}>
                 TEMPERAMENT & TRAITS
               </div>
-              <h2 style={{ fontFamily: "'Playfair Display', serif", color: "#ffffff", fontSize: "clamp(26px, 3vw, 42px)", lineHeight: "1.3", marginBottom: "32px" }}>
+              
+              <h2 style={{ fontFamily: "'Playfair Display', serif", color: "#111111", fontSize: "clamp(32px, 4vw, 42px)", lineHeight: "1.3", marginBottom: "32px", fontWeight: 700 }}>
                 What Makes the Brittany Unique
               </h2>
-              <div className="grid grid-cols-1 gap-3">
+              
+              <div className="grid grid-cols-1 gap-4">
                 {traits.map((trait, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <CheckCircle size={16} style={{ color: "#C9A84C", flexShrink: 0 }} />
-                    <span style={{ color: "rgba(255,255,255,0.7)", fontFamily: "'Inter', sans-serif", fontSize: "14px" }}>{trait}</span>
+                  <div key={i} className="flex items-center gap-4">
+                    <CheckCircle size={18} style={{ color: "#8B6914", flexShrink: 0 }} />
+                    <span style={{ color: "#333333", fontFamily: "'Inter', sans-serif", fontSize: "16px", fontWeight: 500 }}>{trait}</span>
                   </div>
                 ))}
               </div>
+              
               <Link
                 to="/become-a-member"
-                className="inline-flex items-center gap-2 mt-10"
+                className="inline-flex items-center gap-2 mt-12"
                 style={{
-                  background: "linear-gradient(135deg, #C9A84C, #E8C97E)",
-                  color: "#080c18",
-                  padding: "14px 32px",
+                  background: "#111111",
+                  color: "#ffffff",
+                  padding: "16px 36px",
                   borderRadius: "2px",
                   fontFamily: "'Cinzel', serif",
-                  fontSize: "11px",
-                  letterSpacing: "0.15em",
-                  fontWeight: 700,
-                  boxShadow: "0 6px 24px rgba(201,168,76,0.4)",
+                  fontSize: "12px",
+                  letterSpacing: "0.2em",
+                  fontWeight: 800,
                 }}
               >
                 JOIN THE CLUB <ArrowRight size={14} />
               </Link>
             </div>
-            <div style={{ borderRadius: "12px", overflow: "hidden", boxShadow: "0 30px 70px rgba(0,0,0,0.6), 0 0 0 1px rgba(201,168,76,0.15)" }}>
-              <ImageWithFallback src={outdoorImg} alt="Brittany Outdoors" className="w-full object-cover" style={{ height: "500px" }} />
+            
+            <div style={{ borderRadius: "2px", overflow: "hidden", border: "8px solid #ffffff", boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}>
+              <ImageWithFallback src={outdoorImg} alt="Brittany Outdoors" className="w-full object-cover" style={{ height: "550px" }} />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Breed History */}
-      <section className="py-24 px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <div style={{ fontFamily: "'Cinzel', serif", color: "#C9A84C", fontSize: "11px", letterSpacing: "0.25em", marginBottom: "12px" }}>
+      {/* SECTION 4: HISTORY (Centered Header + Gold Top Border Cards) */}
+      <section className="py-32 px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="text-center mb-20 flex flex-col items-center">
+          {/* Centered Gold Liner */}
+          <div style={{ width: "40px", height: "1px", background: "#8B6914", marginBottom: "24px" }} />
+          
+          <div style={{ fontFamily: "'Cinzel', serif", color: "#8B6914", fontSize: "18px", letterSpacing: "0.3em", marginBottom: "12px", fontWeight: 800 }}>
             HERITAGE
           </div>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", color: "#ffffff", fontSize: "clamp(26px, 3vw, 40px)" }}>
+          
+          <h2 style={{ fontFamily: "'Playfair Display', serif", color: "#111111", fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 700 }}>
             A Rich Breed History
           </h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-8">
           {breedHistory.map(({ title, desc }, i) => (
             <div
               key={i}
               style={{
-                background: "linear-gradient(135deg, rgba(15,22,45,0.6), rgba(10,14,26,0.6))",
-                border: "1px solid rgba(201,168,76,0.15)",
-                borderRadius: "10px",
-                padding: "32px",
-                transition: "all 0.3s ease",
+                background: "#ffffff",
+                border: "1px solid rgba(0,0,0,0.06)",
+                borderTop: "4px solid #C9A84C", // Gold Top Border
+                padding: "45px",
+                borderRadius: "2px",
+                transition: "all 0.4s ease",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(201,168,76,0.35)";
-                (e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)";
+                e.currentTarget.style.transform = "translateY(-8px)";
+                e.currentTarget.style.boxShadow = "0 20px 40px rgba(0,0,0,0.05)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(201,168,76,0.15)";
-                (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "none";
               }}
             >
-              <div style={{ fontFamily: "'Cinzel', serif", color: "#C9A84C", fontSize: "11px", letterSpacing: "0.15em", marginBottom: "10px" }}>
+              <div style={{ fontFamily: "'Cinzel', serif", color: "#C9A84C", fontSize: "18px", fontWeight: 800, marginBottom: "20px" }}>
                 0{i + 1}
               </div>
-              <h3 style={{ fontFamily: "'Playfair Display', serif", color: "#ffffff", fontSize: "20px", marginBottom: "14px" }}>{title}</h3>
-              <p style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'Inter', sans-serif", fontSize: "14px", lineHeight: "1.8" }}>{desc}</p>
+              <h3 style={{ fontFamily: "'Playfair Display', serif", color: "#111111", fontSize: "26px", marginBottom: "18px", fontWeight: 700 }}>
+                {title}
+              </h3>
+              <p style={{ color: "rgba(0,0,0,0.6)", fontFamily: "'Inter', sans-serif", fontSize: "16px", lineHeight: "1.8" }}>
+                {desc}
+              </p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Puppy section */}
+      {/* SECTION 5: CTA (Centered Footer) */}
       <section
-        className="relative overflow-hidden py-24"
-        style={{ borderTop: "1px solid rgba(201,168,76,0.1)", borderBottom: "1px solid rgba(201,168,76,0.1)" }}
+        className="relative overflow-hidden py-32"
+        style={{ background: "#080c18" }}
       >
         <div className="absolute inset-0">
-          <ImageWithFallback src={puppyImg} alt="Brittany Puppies" className="w-full h-full object-cover" />
-          <div className="absolute inset-0" style={{ background: "rgba(8,12,24,0.82)" }} />
+          <ImageWithFallback src={puppyImg} alt="Brittany Puppies" className="w-full h-full object-cover opacity-25" />
+          <div className="absolute inset-0" style={{ background: "radial-gradient(circle at center, transparent 0%, #080c18 100%)" }} />
         </div>
-        <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <div style={{ fontFamily: "'Cinzel', serif", color: "#C9A84C", fontSize: "11px", letterSpacing: "0.25em", marginBottom: "12px" }}>
-            FIND YOUR COMPANION
-          </div>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", color: "#ffffff", fontSize: "clamp(28px, 4vw, 50px)", marginBottom: "20px", lineHeight: "1.2" }}>
+        <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center flex flex-col items-center">
+          <div style={{ width: "50px", height: "1px", background: "#C9A84C", marginBottom: "32px" }} />
+          <h2 style={{ fontFamily: "'Playfair Display', serif", color: "#ffffff", fontSize: "clamp(32px, 5vw, 56px)", marginBottom: "24px", lineHeight: "1.2", fontStyle: "italic" }}>
             Looking for a Brittany Puppy?
           </h2>
-          <p style={{ color: "rgba(255,255,255,0.65)", fontFamily: "'Inter', sans-serif", fontSize: "16px", lineHeight: "1.8", marginBottom: "36px" }}>
-            NVBC members include some of the most respected Brittany breeders on the East Coast. Contact us to be connected with ethical, health-tested breeders who prioritize temperament and breed standard.
+          <p style={{ color: "rgba(255,255,255,0.7)", fontFamily: "'Inter', sans-serif", fontSize: "18px", lineHeight: "1.8", marginBottom: "48px", fontWeight: 300 }}>
+            Contact us to be connected with ethical, health-tested breeders who prioritize temperament and breed standard.
           </p>
           <Link
             to="/contact"
@@ -272,15 +278,15 @@ export default function WhyBrittany() {
               display: "inline-flex",
               alignItems: "center",
               gap: "12px",
-              background: "linear-gradient(135deg, #C9A84C, #E8C97E)",
+              background: "linear-gradient(135deg, #F7B80B, #E8C97E)",
               color: "#080c18",
-              padding: "16px 40px",
+              padding: "20px 52px",
               borderRadius: "2px",
               fontFamily: "'Cinzel', serif",
               fontSize: "12px",
-              letterSpacing: "0.15em",
-              fontWeight: 700,
-              boxShadow: "0 8px 30px rgba(201,168,76,0.4)",
+              letterSpacing: "0.2em",
+              fontWeight: 800,
+              boxShadow: "0 10px 40px rgba(247, 184, 11, 0.4)",
             }}
           >
             CONTACT US <ArrowRight size={14} />

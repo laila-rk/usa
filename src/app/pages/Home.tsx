@@ -1,13 +1,40 @@
-import { Link } from "react-router";
-import { ArrowRight, Award, Users, Calendar, ChevronRight, Star, Shield, Heart } from "lucide-react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight, Award, Users, Calendar, ChevronRight, Star, Shield, Heart, X, Trophy, Zap, Target } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
-const heroImg = new URL("../../assets/images/americanbrittany.jpg", import.meta.url).href;
-const dogShowImg = new URL("../../assets/images/dog1.jpg", import.meta.url).href;
-const outdoorDog = new URL("../../assets/images/playing.jpg", import.meta.url).href;
-const spanielRunImg = new URL("../../assets/images/dog3.jpeg", import.meta.url).href;
-const membershipImg = new URL("../../assets/images/dog4.jpg", import.meta.url).href;
-const awardImg = new URL("../../assets/images/dog5.jpg", import.meta.url).href;
-const luxuryDogImg = new URL("../../assets/images/outdoorDog.jpg", import.meta.url).href;
+
+/* trial popup photos */
+import specialty1 from "../../assets/images/trials/specialty1.jpg";
+import specialty2 from "../../assets/images/trials/specialty2.jpg";
+import specialty3 from "../../assets/images/trials/specialty3.jpg";
+import specialty4 from "../../assets/images/trials/specialty4.jpg";
+import purejoy1 from "../../assets/images/trials/purejoy1.jpg";
+import purejoy2 from "../../assets/images/trials/purejoy2.jpg";
+import purejoy3 from "../../assets/images/trials/purejoy3.jpg";
+import purejoy4 from "../../assets/images/trials/purejoy4.jpg";
+import field1 from "../../assets/images/trials/field1.jpg";
+import field2 from "../../assets/images/trials/field2.jpg";
+import field3 from "../../assets/images/trials/field3.jpg";
+import field4 from "../../assets/images/trials/field4.jpg";
+import agility1 from "../../assets/images/trials/agility1.jpg";
+import agility2 from "../../assets/images/trials/agility2.jpg";
+import agility3 from "../../assets/images/trials/agility3.jpg";
+import agility4 from "../../assets/images/trials/agility4.jpg";
+import highlightsBanner from "../../assets/highlights2024.jpg";
+
+import heroImg from "../../assets/images/americanbrittany.jpg";
+import dogShowImg from "../../assets/images/playing.jpg";
+import outdoorDogImg from "../../assets/images/playingg.jpg";
+import spanielRunImg from "../../assets/images/dog3.jpeg";
+import membershipImg from "../../assets/images/dog4.jpg";
+import awardImg from "../../assets/images/dog5.jpg";
+import luxuryDogImg from "../../assets/images/outdoorDog.jpg";
+/* Homepage gallery images */
+import gallery1 from "../../assets/images/homepagegallery/gallery1.jpg";
+import gallery2 from "../../assets/images/homepagegallery/gallery2.jpg";
+import gallery3 from "../../assets/images/homepagegallery/gallery3.jpg";
+import gallery4 from "../../assets/images/homepagegallery/gallery4.jpg";
+
 
 /* ─── Design tokens ─────────────────────────────────────────────────── */
 const C = {
@@ -29,8 +56,8 @@ const goldGrad = `linear-gradient(135deg, ${C.gold}, ${C.goldLight})`;
 
 /* ─── Data ──────────────────────────────────────────────────────────── */
 const stats = [
-  { value: "55+", label: "Years of Excellence" },
-  { value: "300+", label: "Active Members" },
+  { value: "53+", label: "Years of Excellence" },
+  { value: "52+", label: "Active Members" },
   { value: "120+", label: "Champions Produced" },
   { value: "40+", label: "Annual Events" },
 ];
@@ -58,6 +85,77 @@ const features = [
   },
 ];
 
+const trials = [
+  {
+    Icon: Trophy,
+    title: "Specialty Shows",
+    subtitle: "Conformation Excellence",
+    accentColor: "#8B6914",
+    paragraphs: [
+      "Specialty Shows are breed-specific conformation events where Brittanys are evaluated against the AKC breed standard by qualified judges. Unlike all-breed shows, these events focus exclusively on the Brittany, attracting top breeders and owners from across the East Coast.",
+      "Judges assess structure, movement, coat quality, and temperament. Winning a Specialty is one of the highest honors in the breed world — titles earned here carry tremendous prestige and validate a dog's quality as a breeding prospect.",
+      "NVBC hosts both independent specialties and cluster specialties in conjunction with all-breed shows throughout the year, giving members multiple opportunities to compete at the highest level.",
+    ],
+    photos: [
+      { src: specialty1, caption: "Best of Breed lineup at the 2024 NVBC Specialty" },
+      { src: specialty2, caption: "Judge evaluating movement in the ring" },
+      { src: specialty3, caption: "Award presentation — Best in Specialty" },
+      { src: specialty4, caption: "Young handlers competing in the Bred-By class" },
+    ],
+  },
+  {
+    Icon: Heart,
+    title: "Pure Joy",
+    subtitle: "Community & Celebration",
+    accentColor: "#7a3b8c",
+    paragraphs: [
+      "Pure Joy events are NVBC's signature community gatherings — informal fun days where Brittany owners bring their dogs together for bonding, games, and celebration of the breed. No judges, no pressure, just the pure joy of Brittanys doing what they love.",
+      "These events include dock diving demos, lure coursing fun runs, trick competitions, and picnic socials. They are perfect for new members, puppies experiencing their first events, and experienced owners who want a relaxed day out.",
+      "Pure Joy events rotate through member properties and local parks, making them accessible across Northern Virginia. Every event ends with a group photo — a beloved NVBC tradition since 1985.",
+    ],
+    photos: [
+      { src: purejoy1, caption: "Brittanys racing in the open field fun run" },
+      { src: purejoy2, caption: "Dock diving event at member's property" },
+      { src: purejoy3, caption: "Annual group picnic with the whole club family" },
+      { src: purejoy4, caption: "Trick competition — crowd favorite every year" },
+    ],
+  },
+  {
+    Icon: Target,
+    title: "Field Tests",
+    subtitle: "Natural Hunting Ability",
+    accentColor: "#2d6e3e",
+    paragraphs: [
+      "Field Tests evaluate the Brittany's natural hunting instincts and trainability in the field. Unlike competitive field trials, tests are non-competitive — dogs are judged against a standard, not each other, making them ideal for hunters and hunters-turned-showdogs alike.",
+      "NVBC offers AKC Junior Hunter (JH), Senior Hunter (SH), and Master Hunter (MH) tests. Dogs must demonstrate bird-finding ability, pointing, backing, and, in higher levels, steady-to-wing-and-shot and retrieving skills.",
+      "Our test grounds in Culpeper and Shenandoah Valley provide ideal conditions. NVBC test secretaries and judges are among the most experienced in the Mid-Atlantic region, and our events routinely attract entries from five or more states.",
+    ],
+    photos: [
+      { src: field1, caption: "Brittany on point during a Senior Hunter test" },
+      { src: field2, caption: "Handler and dog working a bird field in Culpeper" },
+      { src: field3, caption: "Master Hunter — retrieving to hand" },
+      { src: field4, caption: "Junior Hunter test — young dog's first birds" },
+    ],
+  },
+  {
+    Icon: Zap,
+    title: "Agility Trials",
+    subtitle: "Speed, Focus & Teamwork",
+    accentColor: "#1a4a8a",
+    paragraphs: [
+      "Agility Trials showcase the Brittany's athleticism, trainability, and desire to work with their handler. Dogs navigate a timed obstacle course including jumps, tunnels, weave poles, an A-frame, dog walk, and teeter — with handler communication being the key to a clean, fast run.",
+      "NVBC sanctions both AKC and NADAC agility events. Our trials draw competitors from the entire Mid-Atlantic region and are known for excellent course design, smooth logistics, and a welcoming atmosphere for both novice and experienced teams.",
+      "Brittanys excel at agility thanks to their compact build, keen intelligence, and boundless energy. Many NVBC members hold MACH (Master Agility Champion) titles — a testament to the breed's versatility beyond the field and show ring.",
+    ],
+    photos: [
+      { src: agility1, caption: "Brittany flying through the weave poles" },
+      { src: agility2, caption: "Clean run over the double jump sequence" },
+      { src: agility3, caption: "Handler guiding dog through the tunnel" },
+      { src: agility4, caption: "Award ceremony — MACH title celebration" },
+    ],
+  },
+];
+
 const upcomingEvents = [
   { date: "APR 12", month: "2026", title: "Spring Field Trial", location: "Shenandoah Valley, VA", type: "Field Trial" },
   { date: "MAY 08", month: "2026", title: "Conformation Specialty", location: "Fairfax County Fairgrounds", type: "Dog Show" },
@@ -66,6 +164,8 @@ const upcomingEvents = [
 
 /* ─── Component ─────────────────────────────────────────────────────── */
 export default function Home() {
+  const [activeTrial, setActiveTrial] = useState<number | null>(null);
+
   return (
     <div style={{ background: C.white, fontFamily: "'Inter', sans-serif", color: C.charcoal }}>
 
@@ -219,7 +319,7 @@ export default function Home() {
                 maxWidth: "520px",
               }}
             >
-              The premier organization dedicated to celebrating, preserving, and advancing the magnificent Brittany breed in Northern Virginia since 1973.
+              The premier organization dedicated to celebrating, preserving, and advancing the magnificent Brittany breed in Northern Virginia since 1978.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -244,7 +344,7 @@ export default function Home() {
                 BECOME A MEMBER <ArrowRight size={15} />
               </Link>
               <Link
-                to="/the-brittany"
+                to="/why-a-brittany"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -340,7 +440,7 @@ export default function Home() {
       {/* ── ABOUT SNIPPET ──────────────────────────────── */}
       <section
         style={{ background: C.white }}
-        className="py-28 px-6 lg:px-8"
+        className="pt-28 pb-0 px-6 lg:px-8"
       >
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
@@ -355,7 +455,7 @@ export default function Home() {
                 }}
               >
                 <ImageWithFallback
-                  src={outdoorDog}
+                  src={dogShowImg}
                   alt="NVBC Dog Show"
                   className="w-full object-cover"
                   style={{ height: "500px" }}
@@ -374,7 +474,7 @@ export default function Home() {
                   background: goldGrad,
                   borderRadius: "4px",
                   padding: "20px 24px",
-                  boxShadow: "0 16px 40px rgba(201,168,76,0.4)",
+                  boxShadow: "0 16px 40px rgba(66, 41, 5, 0.4)",
                   transform: "perspective(600px) rotateY(-8deg)",
                 }}
               >
@@ -463,8 +563,7 @@ export default function Home() {
                 From field trials to conformation shows, hunt tests to educational seminars, NVBC provides opportunities for every Brittany lover to celebrate and advance this remarkable breed.
               </p>
               <Link
-                to="/about"
-                
+                to="/about-nvbc"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -489,6 +588,341 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── TRIALS OF THE CLUB ──────────────────────────── */}
+      <section
+        style={{
+          background: "linear-gradient(135deg, #d4b05a, #ecd48a, #d4b05a)",
+          padding: "96px 0",
+          borderTop: "1px solid rgba(201,168,76,0.3)",
+          borderBottom: "1px solid rgba(201,168,76,0.3)",
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+
+          {/* Section heading */}
+          <div className="text-center mb-16">
+            <div
+              style={{
+                width: "48px",
+                height: "3px",
+                background: goldGrad,
+                borderRadius: "2px",
+                margin: "0 auto 20px",
+              }}
+            />
+            <div
+              style={{
+                fontFamily: "'Cinzel', serif",
+                color: "#1a1608",
+                fontSize: "13px",
+                letterSpacing: "0.35em",
+                fontWeight: 800,
+                marginBottom: "12px",
+              }}
+            >
+              WHAT WE SERVE
+            </div>
+            <h2
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                color: "#1a1608",
+                fontSize: "clamp(28px, 4vw, 44px)",
+                fontWeight: 700,
+                marginBottom: "16px",
+              }}
+            >
+              The Trials of the Club
+            </h2>
+            <p
+              style={{
+                color: "rgba(26,22,8,0.65)",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "15px",
+                maxWidth: "540px",
+                margin: "0 auto",
+                lineHeight: "1.8",
+              }}
+            >
+              From the show ring to the open field, NVBC offers world-class competitive events for every Brittany enthusiast. Click any card to learn more.
+            </p>
+          </div>
+
+          {/* Trial cards */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {trials.map((trial, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveTrial(i)}
+                style={{
+                  background: "rgba(255,255,255,0.45)",
+                  border: "1px solid rgba(26,22,8,0.15)",
+                  borderTop: `3px solid ${trial.accentColor}`,
+                  borderRadius: "4px",
+                  padding: "36px 28px",
+                  textAlign: "left",
+                  cursor: "pointer",
+                  transition: "all 0.35s ease",
+                  width: "100%",
+                  boxShadow: "none",
+                }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget;
+                  el.style.background = "rgba(255,255,255,0.75)";
+                  el.style.transform = "translateY(-8px)";
+                  el.style.boxShadow = "0 24px 48px rgba(0,0,0,0.5)";
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget;
+                  el.style.background = "rgba(255,255,255,0.45)";
+                  el.style.transform = "translateY(0)";
+                  el.style.boxShadow = "none";
+                }}
+              >
+                <div
+                  style={{
+                    width: "60px",
+                    height: "60px",
+                    borderRadius: "4px",
+                    background: trial.accentColor,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#ffffff",
+                    marginBottom: "20px",
+                    boxShadow: `0 8px 24px ${trial.accentColor}66`,
+                  }}
+                >
+                  <trial.Icon size={26} />
+                </div>
+                <h3
+                  style={{
+                    fontFamily: "'Cinzel', serif",
+                    color: "#1a1608",
+                    fontSize: "14px",
+                    letterSpacing: "0.08em",
+                    marginBottom: "6px",
+                    fontWeight: 800,
+                  }}
+                >
+                  {trial.title}
+                </h3>
+                <div
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    color: "#1a1608",
+                    fontSize: "11px",
+                    letterSpacing: "0.1em",
+                    marginBottom: "14px",
+                    fontWeight: 500,
+                  }}
+                >
+                  {trial.subtitle}
+                </div>
+                <p
+                  style={{
+                    color: "rgba(26,22,8,0.6)",
+                    fontSize: "13px",
+                    lineHeight: "1.8",
+                    fontFamily: "'Inter', sans-serif",
+                    marginBottom: "20px",
+                  }}
+                >
+                  {trial.paragraphs[0].slice(0, 90)}…
+                </p>
+                <div
+                  style={{
+                    fontFamily: "'Cinzel', serif",
+                    color: "#1a1608",
+                    fontSize: "10px",
+                    letterSpacing: "0.2em",
+                    fontWeight: 700,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "6px",
+                  }}
+                >
+                  LEARN MORE <ChevronRight size={11} />
+                </div>
+              </button>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* ── TRIAL POPUP MODAL ────────────────────────────── */}
+      {activeTrial !== null && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0,0,0,0.80)",
+            zIndex: 9999,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "24px",
+          }}
+          onClick={() => setActiveTrial(null)}
+        >
+          <div
+            style={{
+              background: C.white,
+              borderRadius: "8px",
+              maxWidth: "860px",
+              width: "100%",
+              maxHeight: "90vh",
+              overflowY: "auto",
+              position: "relative",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal header */}
+            <div
+              style={{
+                background: C.navy,
+                padding: "32px 40px",
+                borderRadius: "8px 8px 0 0",
+                borderBottom: `3px solid ${trials[activeTrial].accentColor}`,
+                position: "relative",
+              }}
+            >
+              <button
+                onClick={() => setActiveTrial(null)}
+                style={{
+                  position: "absolute",
+                  top: "20px",
+                  right: "20px",
+                  background: "rgba(255,255,255,0.1)",
+                  border: "none",
+                  borderRadius: "50%",
+                  width: "36px",
+                  height: "36px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "#ffffff",
+                  cursor: "pointer",
+                }}
+              >
+                <X size={18} />
+              </button>
+              <div
+                style={{
+                  fontFamily: "'Cinzel', serif",
+                  color: C.gold,
+                  fontSize: "11px",
+                  letterSpacing: "0.3em",
+                  marginBottom: "8px",
+                }}
+              >
+                THE TRIALS OF THE CLUB
+              </div>
+              <h2
+                style={{
+                  fontFamily: "'Playfair Display', serif",
+                  color: "#f8f5ef",
+                  fontSize: "clamp(24px, 4vw, 36px)",
+                  fontWeight: 700,
+                  marginBottom: "4px",
+                }}
+              >
+                {trials[activeTrial].title}
+              </h2>
+              <div
+                style={{
+                  color: "rgba(248,245,239,0.55)",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "13px",
+                }}
+              >
+                {trials[activeTrial].subtitle}
+              </div>
+            </div>
+
+            {/* Modal body */}
+            <div style={{ padding: "40px" }}>
+              {trials[activeTrial].paragraphs.map((para, i) => (
+                <p
+                  key={i}
+                  style={{
+                    color: C.textBody,
+                    fontSize: "15px",
+                    lineHeight: "1.9",
+                    fontFamily: "'Inter', sans-serif",
+                    marginBottom: "18px",
+                  }}
+                >
+                  {para}
+                </p>
+              ))}
+
+              {/* Photo grid */}
+              <div
+                style={{
+                  marginTop: "36px",
+                  borderTop: `1px solid ${C.divider}`,
+                  paddingTop: "32px",
+                }}
+              >
+                <div
+                  style={{
+                    fontFamily: "'Cinzel', serif",
+                    color: "#8B6914",
+                    fontSize: "11px",
+                    letterSpacing: "0.3em",
+                    fontWeight: 800,
+                    marginBottom: "20px",
+                  }}
+                >
+                  PHOTO GALLERY
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  {trials[activeTrial].photos.map((photo, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        borderRadius: "4px",
+                        overflow: "hidden",
+                        position: "relative",
+                      }}
+                    >
+                      <ImageWithFallback
+                        src={photo.src}
+                        alt={photo.caption}
+                        className="w-full object-cover"
+                        style={{ height: "180px" }}
+                      />
+                      <div
+                        style={{
+                          position: "absolute",
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                          background: "linear-gradient(transparent, rgba(0,0,0,0.72))",
+                          padding: "20px 12px 10px",
+                        }}
+                      >
+                        <div
+                          style={{
+                            fontFamily: "'Inter', sans-serif",
+                            color: "#ffffff",
+                            fontSize: "11px",
+                            lineHeight: "1.4",
+                          }}
+                        >
+                          {photo.caption}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* ── FEATURES ────────────────────────────────────── */}
       <section
         style={{
@@ -499,6 +933,8 @@ export default function Home() {
         }}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
+
+          {/* Section heading */}
           <div className="text-center mb-16">
             <div
               style={{
@@ -535,6 +971,8 @@ export default function Home() {
               Our Core Commitments
             </h2>
           </div>
+
+          {/* Feature cards */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map(({ Icon, title, desc }, i) => (
               <div
@@ -566,7 +1004,6 @@ export default function Home() {
               >
                 <div
                   style={{
-
                     width: "64px",
                     height: "64px",
                     borderRadius: "4px",
@@ -608,23 +1045,164 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* ── EVENTS PREVIEW ──────────────────────────────── */}
-      <section style={{ background: C.white }} className="py-28 px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-14">
-            <div>
+          {/* ── QUICK LINKS — inside same offwhite section, below features ── */}
+          <div
+            style={{
+              borderTop: `1px solid ${C.divider}`,
+              paddingTop: "64px",
+              marginTop: "64px",
+            }}
+          >
+            <div className="text-center mb-12">
               <div
                 style={{
                   width: "48px",
                   height: "3px",
                   background: goldGrad,
                   borderRadius: "2px",
-                  marginBottom: "20px",
+                  margin: "0 auto 16px",
                 }}
               />
+              <div
+                style={{
+                  fontFamily: "'Cinzel', serif",
+                  color: "#8B6914",
+                  fontSize: "13px",
+                  letterSpacing: "0.35em",
+                  fontWeight: 800,
+                  marginBottom: "8px",
+                }}
+              >
+                QUICK LINKS
+              </div>
+              <h3
+                style={{
+                  fontFamily: "'Playfair Display', serif",
+                  color: C.charcoal,
+                  fontSize: "clamp(22px, 3vw, 28px)",
+                  fontWeight: 700,
+                }}
+              >
+                Explore More
+              </h3>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { Icon: Award, title: "Gallery", desc: "Browse our collection of championship moments and events.", link: "/gallery" },
+                { Icon: Calendar, title: "Events Calendar", desc: "Stay updated with upcoming field trials, shows and hunt tests.", link: "/calendar" },
+                { Icon: Users, title: "Become a Member", desc: "Join our growing community of Brittany enthusiasts today.", link: "/become-a-member" },
+                { Icon: Star, title: "Why Choose Brittany?", desc: "Discover what makes the Brittany breed truly exceptional.", link: "/why-a-brittany" },
+              ].map(({ Icon, title, desc, link }, i) => (
+                <Link
+                  key={i}
+                  to={link}
+                  style={{
+                    background: "linear-gradient(160deg, #ffffff 0%, #fdf9f2 100%)",
+                    border: "1px solid rgba(139,105,20,0.2)",
+                    borderTop: "3px solid #8B6914",
+                    borderRadius: "4px",
+                    padding: "32px 24px",
+                    display: "block",
+                    transition: "all 0.35s ease",
+                    boxShadow: "0 4px 20px rgba(139,105,20,0.1)",
+                    textDecoration: "none",
+                  }}
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget as HTMLAnchorElement;
+                    el.style.transform = "translateY(-8px)";
+                    el.style.boxShadow = "0 24px 48px rgba(139,105,20,0.2)";
+                    el.style.borderColor = "rgba(139,105,20,0.5)";
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget as HTMLAnchorElement;
+                    el.style.transform = "translateY(0)";
+                    el.style.boxShadow = "0 4px 20px rgba(139,105,20,0.1)";
+                    el.style.borderColor = "rgba(139,105,20,0.2)";
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "56px",
+                      height: "56px",
+                      borderRadius: "4px",
+                      background: "linear-gradient(135deg, #8B6914, #B8920F)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#ffffff",
+                      marginBottom: "18px",
+                      boxShadow: "0 8px 24px rgba(139,105,20,0.35)",
+                    }}
+                  >
+                    <Icon size={22} />
+                  </div>
+                  <h3
+                    style={{
+                      fontFamily: "'Cinzel', serif",
+                      color: "#1a1608",
+                      fontSize: "13px",
+                      letterSpacing: "0.08em",
+                      marginBottom: "10px",
+                      fontWeight: 800,
+                    }}
+                  >
+                    {title}
+                  </h3>
+                  <p
+                    style={{
+                      color: "#555555",
+                      fontSize: "13px",
+                      lineHeight: "1.8",
+                      fontFamily: "'Inter', sans-serif",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    {desc}
+                  </p>
+                  <div
+                    style={{
+                      fontFamily: "'Cinzel', serif",
+                      color: "#8B6914",
+                      fontSize: "10px",
+                      letterSpacing: "0.2em",
+                      fontWeight: 700,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      borderTop: "1px solid rgba(139,105,20,0.15)",
+                      paddingTop: "14px",
+                    }}
+                  >
+                    EXPLORE <ChevronRight size={11} />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ── EVENTS PREVIEW ──────────────────────────────── */}
+      <section style={{ background: C.white }} className="py-28 px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+
+          {/* HEADER */}
+          <div className="mb-14">
+
+            {/* Center Title */}
+            <div className="text-center mb-8">
+              <div
+                style={{
+                  width: "48px",
+                  height: "3px",
+                  background: goldGrad,
+                  borderRadius: "2px",
+                  margin: "0 auto 20px auto",
+                }}
+              />
+
               <div
                 style={{
                   fontFamily: "'Cinzel', serif",
@@ -638,6 +1216,7 @@ export default function Home() {
               >
                 UPCOMING
               </div>
+
               <h2
                 style={{
                   fontFamily: "'Playfair Display', serif",
@@ -649,27 +1228,33 @@ export default function Home() {
                 Featured Events
               </h2>
             </div>
-            <Link
-              to="/events"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "10px",
-                color: "#ffffff",
-                fontFamily: "'Cinzel', serif",
-                fontSize: "11px",
-                letterSpacing: "0.2em",
-                fontWeight: 700,
-                background: "linear-gradient(135deg, #8B6914, #B8920F)",
-                padding: "12px 24px",
-                borderRadius: "4px",
-                boxShadow: "0 4px 16px rgba(139,105,20,0.4)",
-              }}
-            >
-              VIEW ALL EVENTS <ArrowRight size={12} />
-            </Link>
+
+            {/* Button Right */}
+            <div className="flex justify-end">
+              <Link
+                to="/calendar"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  color: "#ffffff",
+                  fontFamily: "'Cinzel', serif",
+                  fontSize: "11px",
+                  letterSpacing: "0.2em",
+                  fontWeight: 700,
+                  background: "linear-gradient(135deg, #8B6914, #B8920F)",
+                  padding: "12px 24px",
+                  borderRadius: "4px",
+                  boxShadow: "0 4px 16px rgba(139,105,20,0.4)",
+                }}
+              >
+                VIEW ALL EVENTS <ArrowRight size={12} />
+              </Link>
+            </div>
+
           </div>
 
+          {/* EVENTS GRID */}
           <div className="grid md:grid-cols-3 gap-6">
             {upcomingEvents.map((ev, i) => (
               <div
@@ -695,11 +1280,13 @@ export default function Home() {
                   el.style.boxShadow = "0 2px 16px rgba(0,0,0,0.06)";
                 }}
               >
+
                 {/* Gold top bar */}
                 <div style={{ height: "4px", background: goldGrad }} />
 
                 <div style={{ padding: "28px 28px 22px" }}>
-                  {/* Date + type row */}
+
+                  {/* Date + Type */}
                   <div
                     style={{
                       display: "flex",
@@ -729,6 +1316,7 @@ export default function Home() {
                       >
                         {ev.date.split(" ")[0]}
                       </div>
+
                       <div
                         style={{
                           fontFamily: "'Cinzel', serif",
@@ -741,11 +1329,11 @@ export default function Home() {
                         {ev.date.split(" ")[1]}
                       </div>
                     </div>
+
                     <div
                       style={{
                         display: "inline-block",
                         background: "linear-gradient(135deg, #8B6914, #B8920F)",
-                        border: "none",
                         borderRadius: "4px",
                         padding: "6px 14px",
                         fontFamily: "'Cinzel', serif",
@@ -789,6 +1377,7 @@ export default function Home() {
                   </div>
                 </div>
 
+                {/* Register Button */}
                 <div
                   style={{
                     borderTop: `1px solid ${C.divider}`,
@@ -797,7 +1386,7 @@ export default function Home() {
                   }}
                 >
                   <Link
-                    to="/events"
+                   to="/calendar"
                     style={{
                       fontFamily: "'Cinzel', serif",
                       color: "#8B6914",
@@ -813,9 +1402,11 @@ export default function Home() {
                     REGISTER NOW <ChevronRight size={12} />
                   </Link>
                 </div>
+
               </div>
             ))}
           </div>
+
         </div>
       </section>
 
@@ -831,10 +1422,10 @@ export default function Home() {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `url(${outdoorDog})`,
+            backgroundImage: `url(${outdoorDogImg})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            opacity: 0.80, //image outdoor lighter
+            opacity: 0.80,
           }}
         />
         {/* White gradient overlay to protect text */}
@@ -843,7 +1434,6 @@ export default function Home() {
           style={{
             background: "linear-gradient(to bottom, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.6) 100%)",
           }}
-
         />
         {/* subtle radial fade */}
         <div
@@ -907,7 +1497,7 @@ export default function Home() {
             Known for their boundless energy, keen nose, and affectionate nature, Brittanys are the perfect blend of working dog and family companion. Discover what makes them truly exceptional.
           </p>
           <Link
-            to="/the-brittany"
+           to="/why-a-brittany"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -929,7 +1519,7 @@ export default function Home() {
       </section>
 
       {/* ── GALLERY PREVIEW ─────────────────────────────── */}
-      <section style={{ background: C.white }} className="py-28 px-6 lg:px-8">
+      <section style={{ background: C.white }} className="pt-28 pb-0 px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-14">
             <div>
@@ -971,30 +1561,32 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 auto-rows-[200px]">
             {[
-              { src: awardImg, label: "Championships", span: "md:col-span-2 md:row-span-2" },
-              { src: dogShowImg, label: "Community" },
-              { src: luxuryDogImg, label: "Portraits" },
-              { src: outdoorDog, label: "Dog Shows", span: "md:col-span-2" },
+              { src: gallery1, label: "Championships", span: "md:col-span-2 md:row-span-2" },
+              { src: gallery2, label: "Community" },
+              { src: gallery3, label: "Portraits" },
+              { src: gallery4, label: "Dog Shows", span: "md:col-span-2" }
             ].map(({ src, label, span }, i) => (
-              <div
+
+              <Link
+                to="/gallery"
                 key={i}
-                className={`relative overflow-hidden cursor-pointer group ${span || ""}`}
-                style={{
-                  height: span?.includes("row-span") ? "auto" : "200px",
-                  minHeight: "200px",
-                  borderRadius: "4px",
-                }}
+                className={`relative overflow-hidden cursor-pointer group block ${span || ""}`}
+                style={{ borderRadius: "4px" }}
               >
                 <ImageWithFallback
                   src={src}
                   alt={label}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
+
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5"
-                  style={{ background: "linear-gradient(180deg, transparent 40%, rgba(8,12,24,0.78))" }}
+                  style={{
+                    background:
+                      "linear-gradient(180deg, transparent 40%, rgba(8,12,24,0.78))",
+                  }}
                 >
                   <span
                     style={{
@@ -1007,7 +1599,7 @@ export default function Home() {
                     {label}
                   </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -1022,7 +1614,6 @@ export default function Home() {
       >
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <div
-
             style={{
               fontFamily: "'Cinzel', serif",
               color: "#1a1608",
@@ -1064,21 +1655,35 @@ export default function Home() {
               display: "inline-flex",
               alignItems: "center",
               gap: "12px",
-              background: C.navy,
-              color: C.gold,
+              background: "#1a1608",
+              color: "#ffffff",
               padding: "18px 48px",
               borderRadius: "2px",
               fontFamily: "'Cinzel', serif",
               fontSize: "12px",
               letterSpacing: "0.15em",
               fontWeight: 700,
-              boxShadow: "0 8px 30px rgba(0,0,0,0.28)",
+              boxShadow: "0 8px 30px rgba(0,0,0,0.35)",
             }}
           >
             JOIN NOW <ArrowRight size={15} />
           </Link>
         </div>
       </section>
+      <section className="w-full">
+ <div className="w-full">
+    <img
+      src={highlightsBanner}
+      alt="NVBC 2024 Highlights"
+      style={{
+        width: "100%",
+        height: "auto",
+        borderRadius: "6px",
+        boxShadow: "0 25px 60px rgba(0,0,0,0.5)"
+      }}
+    />
+  </div>
+</section>
 
     </div>
   );

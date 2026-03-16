@@ -1,15 +1,15 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
-const imgLogo = new URL("../../assets/nvbc.png", import.meta.url).href;
+const imgLogo = new URL("../../assets/nvbc.jpg", import.meta.url).href;
 
 const footerLinks = [
   {
     title: "Quick Links",
     links: [
-      { label: "Home", path: "/" },
-      { label: "About NVBC", path: "/about" },
-      { label: "The Brittany", path: "/the-brittany" },
-      { label: "Events", path: "/events" },
+     { label: "Home", path: "/" },
+      { label: "About NVBC", path: "/about-nvbc" },
+      { label: "The Brittany", path: "/why-a-brittany" },
+      { label: "Events", path: "/calendar" },
     ],
   },
   {
@@ -17,7 +17,7 @@ const footerLinks = [
     links: [
       { label: "Awards", path: "/awards" },
       { label: "Gallery", path: "/gallery" },
-      { label: "Become a Member", path: "/become-a-member" },
+      { label: "Become a Member", path: "/BecomeMember" },
       { label: "Contact", path: "/contact" },
     ],
   },

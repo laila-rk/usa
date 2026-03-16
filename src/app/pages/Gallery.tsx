@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { X, ZoomIn } from "lucide-react";
+import { GalleryImage } from "../../types/gallery";
+import portrait from "../../assets/images/gallery/Brittany-Portrait.jpg";
+/* ─── Assets ─────────────────────────────────────────────────────── */
 
-const images = [
+const images: GalleryImage[] = [
   {
-    src: "https://images.unsplash.com/photo-1765817345131-fc0c44f1b89b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxCcml0dGFueSUyMHNwYW5pZWwlMjBkb2clMjBwb3J0cmFpdCUyMGVsZWdhbnR8ZW58MXx8fHwxNzczMDY4MTY5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-    title: "Brittany Portrait",
+    src: portrait,
+    title: "Brittany-Portrait",
     cat: "Portraits",
   },
   {
@@ -24,12 +27,12 @@ const images = [
     cat: "Field",
   },
   {
-    src: "https://images.unsplash.com/photo-1655848117690-74fb13fdd993?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkb2clMjBicmVlZCUyMGNsdWIlMjBtZW1iZXJzaGlwJTIwY29tbXVuaXR5fGVufDF8fHx8MTc3MzA2ODE3NXww&ixlib=rb-4.1.0&q=80&w=1080",
+    src: "https://images.unsplash.com/photo-1655848117690-74fb13fdd993?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkb2clMjBicmVlZCUyMGNsdWIlMjBtZW1iZXJzaGlwJTIwY29tbXVuaXR5fGVufDF8fHx8MTc3MzA2ODE3NXww",
     title: "Club Members",
     cat: "Events",
   },
   {
-    src: "https://images.unsplash.com/photo-1701342724111-156975f48f25?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBkb2clMjBicmVlZCUyMHBob3RvZ3JhcGh5JTIwc3R1ZGlvfGVufDF8fHx8MTc3MzA2ODE3MXww&ixlib=rb-4.1.0&q=80&w=1080",
+    src: "https://images.unsplash.com/photo-1701342724111-156975f48f25?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBkb2clMjBicmVlZCUyMHBob3RvZ3JhcGh5JTIwc3R1ZGlvfGVufDF8fHx8MTc3MzA2ODE3MXww",
     title: "Studio Portrait",
     cat: "Portraits",
   },
@@ -44,12 +47,12 @@ const images = [
     cat: "Shows",
   },
   {
-    src: "https://images.unsplash.com/photo-1604182969927-7cdb799fce1b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkb2clMjBhZ2lsaXR5JTIwZXZlbnQlMjBvdXRkb29yJTIwc3BvcnRzfGVufDF8fHx8MTc3MzA2ODE3N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+    src: "https://images.unsplash.com/photo-1604182969927-7cdb799fce1b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkb2clMjBhZ2lsaXR5JTIwZXZlbnQlMjBvdXRkb29yJTIwc3BvcnRzfGVufDF8fHx8MTc3MzA2ODE3N3ww",
     title: "Agility Action",
     cat: "Field",
   },
   {
-    src: "https://images.unsplash.com/photo-1560979290-aedae3a87139?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVnYW50JTIwY291bnRyeSUyMGVzdGF0ZSUyMGxhbmRzY2FwZSUyMHZpcmdpbmlhfGVufDF8fHx8MTc3MzA2ODE3N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+    src: "https://images.unsplash.com/photo-1560979290-aedae3a87139?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVnYW50JTIwY291bnRyeSUyMGVzdGF0ZSUyMGxhbmRzY2FwZSUyMHZpcmdpbmlhfGVufDF8fHx8MTc3MzA2ODE3N3ww",
     title: "Virginia Estate",
     cat: "Events",
   },
@@ -75,140 +78,292 @@ const images = [
   },
 ];
 
+/* ─── Design Tokens ──────────────────────────────────────────────── */
+const C = {
+  white: "#ffffff",
+  offwhite: "#FAF7F0",
+  navy: "#080c18",
+  gold: "#C9A84C",
+  charcoal: "#111111",
+  textBody: "#666666",
+  border: "rgba(0,0,0,0.08)",
+};
+
 const categories = ["All", "Portraits", "Field", "Shows", "Events"];
 
 export default function Gallery() {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [lightboxImg, setLightboxImg] = useState<null | (typeof images)[0]>(null);
+  const [lightboxImg, setLightboxImg] = useState<GalleryImage | null>(null);
 
   const filtered = activeCategory === "All" ? images : images.filter((img) => img.cat === activeCategory);
 
   return (
-    <div style={{ background: "#080c18", paddingTop: "100px" }}>
-      {/* Page Header */}
+    <div style={{ background: C.white, minHeight: "100vh" }}>
+      
+      {/* --- FULL PAGE HERO SECTION --- */}
       <section
-        className="relative overflow-hidden py-20"
-        style={{ background: "linear-gradient(135deg, #0a0e1a 0%, #111828 100%)", borderBottom: "1px solid rgba(201,168,76,0.15)" }}
+        className="relative flex items-center justify-center overflow-hidden"
+        style={{ height: "100vh", width: "100%", background: C.navy }}
       >
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          <div style={{ fontFamily: "'Cinzel', serif", color: "#C9A84C", fontSize: "11px", letterSpacing: "0.3em", marginBottom: "16px" }}>
-            PHOTO COLLECTION
-          </div>
-          <h1
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${images[0].src})`, // Using the Portrait as hero background
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: 0.4,
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(to bottom, rgba(8,12,24,0.6) 0%, transparent 50%, rgba(8,12,24,0.9) 100%)",
+          }}
+        />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+          <div 
+            style={{ 
+              margin: "0 auto 28px auto", 
+              width: "120px", 
+              height: "6px", 
+              background: C.gold 
+            }} 
+          />
+          <div
             style={{
               fontFamily: "'Cinzel', serif",
-              color: "#ffffff",
-              fontSize: "clamp(36px, 5vw, 64px)",
+              color: C.gold,
+              fontSize: "14px",
+              letterSpacing: "0.5em",
+              marginBottom: "32px",
               fontWeight: 700,
-              lineHeight: "1.15",
-              marginBottom: "20px",
             }}
           >
-            Gallery
+            VISUAL ARCHIVE
+          </div>
+
+          <h1
+            style={{
+              fontFamily: "'Playfair Display', serif",
+              color: C.white,
+              fontSize: "clamp(45px, 9vw, 110px)",
+              fontWeight: 700,
+              lineHeight: "1",
+              marginBottom: "40px",
+              fontStyle: "italic"
+            }}
+          >
+            The Photographic<br />Gallery
           </h1>
-          <p style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'Playfair Display', serif", fontSize: "18px", maxWidth: "550px", margin: "0 auto", lineHeight: "1.7" }}>
-            A visual celebration of Brittany excellence — from field to ring and everything in between.
-          </p>
+
+          {/* Centered Gold Divider Inside Hero */}
+          
         </div>
       </section>
 
-      <section className="py-16 px-6 lg:px-8 max-w-7xl mx-auto">
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+      {/* --- MAIN GALLERY SECTION --- */}
+      <section className="pt-32 pb-24 px-6 lg:px-8 max-w-7xl mx-auto">
+        
+        {/* Editorial Heading */}
+        <div className="text-center mb-16">
+          <div 
+            style={{ 
+              margin: "0 auto 28px auto", 
+              width: "120px", 
+              height: "6px", 
+              background: C.gold 
+            }} 
+          />
+          <div style={{ 
+            fontFamily: "'Cinzel', serif", 
+            color: C.gold, 
+            fontSize: "38px", 
+            letterSpacing: "0.2em", 
+            marginBottom: "16px", 
+            fontWeight: 800 
+          }}>
+            COLLECTIONS
+          </div>
+          <h2 style={{ 
+            fontFamily: "'Playfair Display', serif", 
+            color: C.charcoal, 
+            fontSize: "clamp(32px, 4vw, 48px)", 
+            fontWeight: 700 
+          }}>
+            Explore Our Heritage
+          </h2>
+          <p style={{ 
+            maxWidth: "600px", 
+            margin: "24px auto 0", 
+            color: C.textBody, 
+            fontFamily: "'Inter', sans-serif", 
+            lineHeight: "1.8" 
+          }}>
+            A visual celebration of Brittany excellence — from professional field trials to championship conformation rings and intimate portraits.
+          </p>
+        </div>
+
+        {/* Category Filter - Luxury Style */}
+        <div className="flex flex-wrap justify-center gap-4 mb-16">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
               style={{
-                background: activeCategory === cat ? "linear-gradient(135deg, #C9A84C, #E8C97E)" : "transparent",
-                color: activeCategory === cat ? "#080c18" : "rgba(255,255,255,0.6)",
-                border: activeCategory === cat ? "none" : "1px solid rgba(255,255,255,0.15)",
-                padding: "10px 26px",
-                borderRadius: "2px",
+                background: activeCategory === cat ? C.gold : "transparent",
+                color: activeCategory === cat ? C.white : C.charcoal,
+                border: `1px solid ${activeCategory === cat ? C.gold : C.border}`,
+                padding: "12px 32px",
+                borderRadius: "0px",
                 fontFamily: "'Cinzel', serif",
                 fontSize: "11px",
-                letterSpacing: "0.15em",
+                letterSpacing: "0.2em",
                 cursor: "pointer",
-                transition: "all 0.25s ease",
-                fontWeight: activeCategory === cat ? 700 : 400,
+                transition: "all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1)",
+                fontWeight: activeCategory === cat ? 700 : 500,
+              }}
+              onMouseEnter={(e) => {
+                if (activeCategory !== cat) {
+                    e.currentTarget.style.borderColor = C.gold;
+                    e.currentTarget.style.color = C.gold;
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (activeCategory !== cat) {
+                    e.currentTarget.style.borderColor = C.border;
+                    e.currentTarget.style.color = C.charcoal;
+                }
               }}
             >
-              {cat}
+              {cat.toUpperCase()}
             </button>
           ))}
         </div>
 
-        {/* Masonry-style grid */}
+        {/* Masonry-style grid with premium spacing */}
         <div
           style={{
             columns: "3",
-            columnGap: "12px",
+            columnGap: "24px",
           }}
           className="sm:columns-2 lg:columns-3 xl:columns-4"
         >
           {filtered.map((img, i) => (
             <div
               key={i}
-              className="relative overflow-hidden group cursor-pointer mb-3"
+              className="relative overflow-hidden group cursor-pointer mb-6"
               style={{
-                borderRadius: "8px",
                 breakInside: "avoid",
-                border: "1px solid rgba(201,168,76,0.08)",
-                transition: "all 0.3s ease",
+                transition: "all 0.5s ease",
               }}
               onClick={() => setLightboxImg(img)}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(201,168,76,0.4)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(201,168,76,0.08)";
-              }}
             >
-              <ImageWithFallback
-                src={img.src}
-                alt={img.title}
-                className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                style={{ display: "block" }}
-              />
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col items-center justify-center gap-2"
-                style={{ background: "rgba(8,12,24,0.75)" }}
-              >
-                <ZoomIn size={28} style={{ color: "#C9A84C" }} />
-                <span style={{ fontFamily: "'Cinzel', serif", color: "#ffffff", fontSize: "11px", letterSpacing: "0.15em" }}>
-                  {img.title}
-                </span>
-                <span style={{ fontFamily: "'Cinzel', serif", color: "#C9A84C", fontSize: "9px", letterSpacing: "0.2em" }}>
-                  {img.cat}
-                </span>
+              <div style={{ position: 'relative', overflow: 'hidden' }}>
+                <ImageWithFallback
+                  src={img.src}
+                  alt={img.title}
+                  className="w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  style={{ display: "block" }}
+                />
+                
+                {/* Luxury Hover Overlay */}
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center p-6 text-center"
+                  style={{ background: "rgba(8,12,24,0.85)" }}
+                >
+                  <div style={{ 
+                      transform: 'translateY(20px)', 
+                      transition: 'transform 0.5s ease' 
+                  }} className="group-hover:translate-y-0 flex flex-col items-center">
+                    <ZoomIn size={32} style={{ color: C.gold, marginBottom: '16px' }} />
+                    <span style={{ 
+                        fontFamily: "'Playfair Display', serif", 
+                        color: C.white, 
+                        fontSize: "20px", 
+                        fontStyle: 'italic',
+                        marginBottom: '8px' 
+                    }}>
+                      {img.title}
+                    </span>
+                    <div style={{ width: '40px', height: '1px', background: C.gold, marginBottom: '12px' }} />
+                    <span style={{ 
+                        fontFamily: "'Cinzel', serif", 
+                        color: C.gold, 
+                        fontSize: "10px", 
+                        letterSpacing: "0.2em" 
+                    }}>
+                      {img.cat}
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Lightbox */}
+      {/* --- LIGHTBOX (MODAL) --- */}
       {lightboxImg && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center p-6"
-          style={{ background: "rgba(5,8,16,0.95)" }}
+          className="fixed inset-0 z-[100] flex items-center justify-center p-6 sm:p-12"
+          style={{ background: "rgba(5,8,16,0.98)" }}
           onClick={() => setLightboxImg(null)}
         >
+          {/* Close Button */}
           <button
-            className="absolute top-6 right-6"
-            style={{ color: "#C9A84C", background: "rgba(201,168,76,0.1)", border: "1px solid rgba(201,168,76,0.3)", borderRadius: "50%", width: "44px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}
+            className="absolute top-8 right-8 transition-transform hover:rotate-90 duration-300"
+            style={{ 
+                color: C.gold, 
+                background: "transparent", 
+                border: "none", 
+                cursor: "pointer" 
+            }}
             onClick={() => setLightboxImg(null)}
           >
-            <X size={20} />
+            <X size={40} strokeWidth={1} />
           </button>
+
           <div
-            style={{ maxWidth: "900px", width: "100%", borderRadius: "12px", overflow: "hidden", boxShadow: "0 40px 100px rgba(0,0,0,0.8), 0 0 0 1px rgba(201,168,76,0.25)" }}
+            style={{ 
+                maxWidth: "1100px", 
+                width: "100%", 
+                position: 'relative'
+            }}
             onClick={(e) => e.stopPropagation()}
           >
-            <ImageWithFallback src={lightboxImg.src} alt={lightboxImg.title} className="w-full object-cover" style={{ maxHeight: "80vh" }} />
-            <div style={{ background: "linear-gradient(135deg, #0a0e1a, #111828)", padding: "16px 24px", borderTop: "1px solid rgba(201,168,76,0.2)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <span style={{ fontFamily: "'Playfair Display', serif", color: "#ffffff", fontSize: "16px" }}>{lightboxImg.title}</span>
-              <span style={{ fontFamily: "'Cinzel', serif", color: "#C9A84C", fontSize: "9px", letterSpacing: "0.2em" }}>{lightboxImg.cat}</span>
+            <ImageWithFallback 
+                src={lightboxImg.src} 
+                alt={lightboxImg.title} 
+                className="w-full h-auto object-contain" 
+                style={{ maxHeight: "75vh", boxShadow: "0 50px 100px rgba(0,0,0,0.9)" }} 
+            />
+            
+            <div style={{ 
+                padding: "32px 0", 
+                borderTop: `1px solid rgba(201,168,76,0.2)`, 
+                display: "flex", 
+                flexDirection: 'column',
+                alignItems: "center",
+                textAlign: 'center'
+            }}>
+              <h3 style={{ 
+                  fontFamily: "'Playfair Display', serif", 
+                  color: C.white, 
+                  fontSize: "28px", 
+                  marginBottom: "8px",
+                  fontStyle: 'italic'
+              }}>
+                {lightboxImg.title}
+              </h3>
+              <span style={{ 
+                  fontFamily: "'Cinzel', serif", 
+                  color: C.gold, 
+                  fontSize: "12px", 
+                  letterSpacing: "0.3em" 
+              }}>
+                {lightboxImg.cat}
+              </span>
             </div>
           </div>
         </div>
